@@ -34,6 +34,7 @@ import { useAionrsModelSelection } from '../platforms/aionrs/useAionrsModelSelec
 import { usePreviewContext } from '../Preview';
 import StarOfficeMonitorCard from '../platforms/openclaw/StarOfficeMonitorCard.tsx';
 import ConversationSkillsIndicator from './ConversationSkillsIndicator';
+import ConversationUsageIndicator from '@/renderer/components/agent/ConversationUsageIndicator';
 // import SkillRuleGenerator from './components/SkillRuleGenerator'; // Temporarily hidden
 
 /** Check whether a specific skill is loaded for the conversation */
@@ -168,6 +169,7 @@ const GeminiConversationPanel: React.FC<{
     headerLeft: <GeminiModelSelector selection={modelSelection} />,
     headerExtra: (
       <div className='flex items-center gap-8px'>
+        <ConversationUsageIndicator conversation={conversation} />
         <ConversationSkillsIndicator conversation={conversation} />
         <CronJobManager
           conversationId={conversation.id}
@@ -227,6 +229,7 @@ const AionrsConversationPanel: React.FC<{ conversation: AionrsConversation; slid
     headerLeft: <AionrsModelSelector selection={modelSelection} />,
     headerExtra: (
       <div className='flex items-center gap-8px'>
+        <ConversationUsageIndicator conversation={conversation} />
         <ConversationSkillsIndicator conversation={conversation} />
         <CronJobManager
           conversationId={conversation.id}
@@ -423,6 +426,7 @@ const ChatConversation: React.FC<{
           />
         </div>
       )}
+      <ConversationUsageIndicator conversation={conversation} />
       <ConversationSkillsIndicator conversation={conversation} />
       {conversation && (
         <div className='shrink-0'>

@@ -1,0 +1,58 @@
+.pet-states-root {
+}
+:root {
+  --pet-primary: #2bab52;
+  --pet-primary-muted: #7db993;
+  --pet-secondary: #b6d6c5;
+  --pet-muted-2: #7db993;
+
+  --pet-body-alt: #7db993;
+  
+  --pet-hat: #1474db;
+  --pet-hat-alt: #1474dbbb;
+  --pet-hat-variant: #c8611d;
+  --pet-hat-accent: #4317d4;
+
+  --pet-glow: #20af33;
+  --pet-dot: #605AFF;
+  --pet-shadow: #c0c0c0;
+  --pet-ink: #111827;
+  --pet-white: #ffffff;
+  --pet-spark-1: #FFF59D;
+  --pet-spark-2: #FFB3C6;
+  --pet-spark-accent: #FF9500;
+  --pet-blush: #e08090;
+  --pet-green: #4AFF3D;
+  --pet-screen-bg: #D9D9D9;
+  --pet-screen-stroke: #E5E7F0;
+  --pet-screen-line: #9098b8;
+  --pet-track: #736B6B;
+  --pet-secondary-2: #B9C3EB;
+  --pet-box: #c8a96e;
+  --pet-box-stroke: #a08040;
+  --pet-tape: #e0c070;
+  --pet-gear: #ffc94d;
+  --pet-block-l: #7c91e8;
+  --pet-block-r: #e87c7c;
+  --pet-spark-gold: #FFD700;
+  --pet-bubble-border: #d8dde8;
+  --pet-check: #22C55E;
+  --pet-light-blue: #BECAFF;
+  --pet-error-body: #f91010;
+  --pet-juggle-green: #0FDC00;
+  --pet-juggle-yellow: #FEBE06;
+  --pet-juggle-pink: #FE4F4F;
+  --pet-page-1: #f0ece0;
+  --pet-page-2: #e8e4d8;
+  --pet-page-spine: #d0c8b0;
+  --pet-page-text: #b0a890;
+  --pet-light-2: #c0c8e0;
+  --pet-broom-stroke: #b89040;
+  --pet-dust: #9098b0;
+  --pet-dust-2: #9098b8;
+  --pet-mouth-1: #e8a0a0;
+  --pet-mouth-2: #d07070;
+}
+
+/* Utility class that can be applied to inline SVG elements */
+.pet-state-svg { display: block; }

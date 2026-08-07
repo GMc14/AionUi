@@ -203,4 +203,22 @@ export function initSystemSettingsBridge(): void {
     const { setPetConfirmEnabled } = await import('@process/pet/petManager');
     setPetConfirmEnabled(enabled);
   });
+
+  ipcBridge.systemSettings.getPetSkinColor.provider(async () => {
+    const value = await ProcessConfig.get('pet.skinColor');
+    return value ?? '#97A0C5';
+  });
+
+  ipcBridge.systemSettings.setPetSkinColor.provider(async ({ color }) => {
+    await ProcessConfig.set('pet.skinColor', color);
+  });
+
+  ipcBridge.systemSettings.getPetHatColor.provider(async () => {
+    const value = await ProcessConfig.get('pet.hatColor');
+    return value ?? '#FF6B35';
+  });
+
+  ipcBridge.systemSettings.setPetHatColor.provider(async ({ color }) => {
+    await ProcessConfig.set('pet.hatColor', color);
+  });
 }

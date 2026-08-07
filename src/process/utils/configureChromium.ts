@@ -23,6 +23,13 @@ if (!app.isPackaged) {
   // Explicitly override userData to the dev directory.
   const appSupportDir = path.dirname(app.getPath('userData'));
   app.setPath('userData', path.join(appSupportDir, devAppName));
+
+  // Also set dock name on macOS to show properly when hovering over dock icon
+  if (process.platform === 'darwin' && app.dock && typeof app.dock.setName === 'function') {
+    app.dock.setName(devAppName);
+  } else {
+    console.log("Dock name setting skipped: " + (app.dock ? typeof app.dock.setName : 'dock not available'));
+  }
 }
 
 // Configure Chromium command-line flags for WebUI and CLI modes

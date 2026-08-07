@@ -31,7 +31,16 @@ const MessageAcpPermission: React.FC<MessageAcpPermissionProps> = React.memo(({ 
     }
 
     // 直接使用 toolCall 中的实际数据
-    const displayTitle = toolCall.title || toolCall.rawInput?.description || t('messages.permissionRequest');
+    let displayTitle = toolCall.title || toolCall.rawInput?.description || t('messages.permissionRequest');
+    // If title is generic like "External directory" but we have a path, enhance the title
+    if ((displayTitle === 'External directory' || displayTitle === 'Read directory' || displayTitle === 'Write directory' || displayTitle === 'Directory') && toolCall.rawInput?.path) {
+      displayTitle = `${displayTitle}: ${toolCall.rawInput.path}`;
+    }
+    // Also check for description which may have the target
+    const rawDescription = toolCall.rawInput?.description;
+    if (rawDescription && typeof rawDescription === 'string' && !displayTitle.includes(rawDescription) && rawDescription.length < 200) {
+      displayTitle = `${displayTitle} - ${rawDescription}`;
+    }
 
     // 简单的图标映射
     const kindIcons: Record<string, string> = {
@@ -96,6 +105,22 @@ const MessageAcpPermission: React.FC<MessageAcpPermissionProps> = React.memo(({ 
             <Text className='text-xs text-t-secondary mb-1'>{t('messages.command')}</Text>
             <code className='text-xs bg-1 p-2 rounded block text-t-primary break-all'>
               {toolCall.rawInput?.command || toolCall.title}
+            </code>
+          </div>
+        )}
+        {toolCall.rawInput?.path && (
+          <div>
+            <Text className='text-xs text-t-secondary mb-1'>Path</Text>
+            <code className='text-xs bg-1 p-2 rounded block text-t-primary break-all'>
+              {toolCall.rawInput.path as string}
+            </code>
+          </div>
+        )}
+        {toolCall.rawInput?.file_path && (
+          <div>
+            <Text className='text-xs text-t-secondary mb-1'>File</Text>
+            <code className='text-xs bg-1 p-2 rounded block text-t-primary break-all'>
+              {toolCall.rawInput.file_path as string}
             </code>
           </div>
         )}

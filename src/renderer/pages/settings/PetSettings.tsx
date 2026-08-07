@@ -19,6 +19,8 @@ const PetSettings: React.FC = () => {
   const [size, setSize] = useState(280);
   const [dnd, setDnd] = useState(false);
   const [confirmEnabled, setConfirmEnabled] = useState(true);
+  const [skinColor, setSkinColor] = useState('#97A0C5');
+  const [hatColor, setHatColor] = useState('#FF6B35');
   const { t } = useTranslation();
   const viewMode = useSettingsViewMode();
   const isPageMode = viewMode === 'page';
@@ -53,6 +55,20 @@ const PetSettings: React.FC = () => {
       .catch(() => {});
   }, []);
 
+  useEffect(() => {
+    systemSettings.getPetSkinColor
+      .invoke()
+      .then((val) => setSkinColor(val))
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    systemSettings.getPetHatColor
+      .invoke()
+      .then((val) => setHatColor(val))
+      .catch(() => {});
+  }, []);
+
   const handleEnabledChange = useCallback((checked: boolean) => {
     setEnabled(checked);
     systemSettings.setPetEnabled.invoke({ enabled: checked }).catch(() => {
@@ -83,6 +99,16 @@ const PetSettings: React.FC = () => {
     systemSettings.setPetConfirmEnabled.invoke({ enabled: checked }).catch(() => {
       setConfirmEnabled(!checked);
     });
+  }, []);
+
+  const handleSkinColorChange = useCallback((color: string) => {
+    setSkinColor(color);
+    systemSettings.setPetSkinColor.invoke({ color }).catch(() => {});
+  }, []);
+
+  const handleHatColorChange = useCallback((color: string) => {
+    setHatColor(color);
+    systemSettings.setPetHatColor.invoke({ color }).catch(() => {});
   }, []);
 
   if (!isDesktop) {
@@ -127,6 +153,34 @@ const PetSettings: React.FC = () => {
       label: t('pet.confirmBubble'),
       description: t('pet.confirmBubbleDescription'),
       component: <Switch checked={confirmEnabled} onChange={handleConfirmEnabledChange} disabled={!enabled} />,
+    },
+    {
+      key: 'colors',
+      label: t('pet.colors'),
+      component: (
+        <div className='flex items-center gap-12px'>
+          <div className='flex items-center gap-6px'>
+            <span className='text-12px text-t-secondary'>{t('pet.skinColor')}</span>
+            <input
+              type='color'
+              value={skinColor}
+              onChange={(e) => handleSkinColorChange(e.target.value)}
+              disabled={!enabled}
+              className='w-24px h-24px rd-4px cursor-pointer border-0 p-0'
+            />
+          </div>
+          <div className='flex items-center gap-6px'>
+            <span className='text-12px text-t-secondary'>{t('pet.hatColor')}</span>
+            <input
+              type='color'
+              value={hatColor}
+              onChange={(e) => handleHatColorChange(e.target.value)}
+              disabled={!enabled}
+              className='w-24px h-24px rd-4px cursor-pointer border-0 p-0'
+            />
+          </div>
+        </div>
+      ),
     },
   ];
 

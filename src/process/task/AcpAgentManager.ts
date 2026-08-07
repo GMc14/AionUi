@@ -785,11 +785,44 @@ ${collectedResponses.join('\n')}`;
         return;
       }
 
+      // Enhance the title/description with path info if available
+      let enhancedTitle = toolCall.title || 'messages.permissionRequest';
+      let enhancedDescription = toolCall.rawInput?.description || 'messages.agentRequestingPermission';
+      const rawInput = toolCall.rawInput as Record<string, unknown> | undefined;
+
+      // Check multiple possible locations for target path
+      const pathFields = ['path', 'file_path', 'target', 'directory', 'target_path', 'working_directory'];
+      for (const field of pathFields) {
+        if (rawInput?.[field] && typeof rawInput[field] === 'string') {
+          const pathValue = rawInput[field] as string;
+          // If title is generic, replace it with more specific info
+          if (enhancedTitle === 'external_directory' || enhancedTitle === 'Directory' || enhancedTitle === 'messages.permissionRequest') {
+            enhancedTitle = `${enhancedTitle}: ${pathValue}`;
+          } else if (!enhancedTitle.includes(pathValue)) {
+            enhancedTitle = `${enhancedTitle} - ${pathValue}`;
+          }
+          break;
+        }
+      }
+
+      // Add description if it's different from title
+      if (rawInput?.description && typeof rawInput.description === 'string' && !enhancedTitle.includes(rawInput.description)) {
+        enhancedDescription = rawInput.description as string;
+      }
+
+      // If title is still generic but we have rawInput, include it in description for context
+      if ((enhancedTitle === 'external_directory' || enhancedTitle === 'Directory') && rawInput && Object.keys(rawInput).length > 0) {
+        const rawInputStr = JSON.stringify(rawInput, null, 2);
+        if (rawInputStr !== '{}') {
+          enhancedDescription = `${enhancedDescription}\n\nDetails: ${rawInputStr}`;
+        }
+      }
+
       this.addConfirmation({
-        title: toolCall.title || 'messages.permissionRequest',
+        title: enhancedTitle,
         action: 'messages.command',
         id: v.msg_id,
-        description: toolCall.rawInput?.description || 'messages.agentRequestingPermission',
+        description: enhancedDescription,
         callId: toolCall.toolCallId || v.msg_id,
         options: options.map((option) => ({
           label: option.name,

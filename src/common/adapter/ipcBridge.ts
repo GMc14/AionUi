@@ -738,6 +738,10 @@ export const systemSettings = {
   setPetDnd: bridge.buildProvider<void, { dnd: boolean }>('system-settings:set-pet-dnd'),
   getPetConfirmEnabled: bridge.buildProvider<boolean, void>('system-settings:get-pet-confirm-enabled'),
   setPetConfirmEnabled: bridge.buildProvider<void, { enabled: boolean }>('system-settings:set-pet-confirm-enabled'),
+  getPetSkinColor: bridge.buildProvider<string, void>('system-settings:get-pet-skin-color'),
+  setPetSkinColor: bridge.buildProvider<void, { color: string }>('system-settings:set-pet-skin-color'),
+  getPetHatColor: bridge.buildProvider<string, void>('system-settings:get-pet-hat-color'),
+  setPetHatColor: bridge.buildProvider<void, { color: string }>('system-settings:set-pet-hat-color'),
 };
 
 // 系统通知接口 / System notification API

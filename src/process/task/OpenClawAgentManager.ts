@@ -142,12 +142,27 @@ class OpenClawAgentManager extends BaseAgentManager<OpenClawAgentManagerData> {
         options: Array<{ optionId: string; name: string; kind: string }>;
       };
 
+      // Enhance title with path info if available
+      let enhancedTitle = permissionData.toolCall.title || 'Permission Required';
+      const rawInput = permissionData.toolCall.rawInput as Record<string, unknown> | undefined;
+
+      const pathFields = ['path', 'file_path', 'target', 'directory', 'target_path', 'working_directory'];
+      for (const field of pathFields) {
+        if (rawInput?.[field] && typeof rawInput[field] === 'string') {
+          const pathValue = rawInput[field] as string;
+          if (!enhancedTitle.includes(pathValue)) {
+            enhancedTitle = `${enhancedTitle}: ${pathValue}`;
+          }
+          break;
+        }
+      }
+
       // Create confirmation for UI
       const confirmation: IConfirmation = {
         id: permissionData.toolCall.toolCallId,
         callId: permissionData.toolCall.toolCallId,
-        title: permissionData.toolCall.title || 'Permission Required',
-        description: JSON.stringify(permissionData.toolCall.rawInput || {}),
+        title: enhancedTitle,
+        description: enhancedTitle.includes(':') ? '' : JSON.stringify(permissionData.toolCall.rawInput || {}),
         options: permissionData.options.map((opt) => ({
           label: opt.name,
           value: opt.optionId,

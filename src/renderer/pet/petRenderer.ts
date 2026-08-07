@@ -7,11 +7,42 @@ function getStateAssetPath(state: string): string {
   return `${PET_STATES_BASE_PATH}/${state}.svg`;
 }
 
-function setupTransitions(_target: HTMLObjectElement | null): void {
-  // Intentionally empty: eye tracking now writes SVG `transform` attributes on
-  // the .idle-pupil / .idle-track wrappers (see onEyeMove below), which are
-  // not affected by CSS `transition` — that property only animates CSS
-  // transforms. Smoothing comes from the tick rate, not from CSS transitions.
+async function applyColors(): Promise<void> {
+  try {
+    const skinColor = await window.systemSettings.getPetSkinColor.invoke();
+    const hatColor = await window.systemSettings.getPetHatColor.invoke();
+    document.documentElement.style.setProperty('--pet-skin-color', skinColor);
+    document.documentElement.style.setProperty('--pet-hat-color', hatColor);
+    if (currentObject?.contentDocument) {
+      currentObject.contentDocument.documentElement.style.setProperty('--pet-skin-color', skinColor);
+      currentObject.contentDocument.documentElement.style.setProperty('--pet-hat-color', hatColor);
+    }
+  } catch {
+    // Use defaults
+  }
+}
+
+const COLOR_STYLES = `
+  :root {
+    --pet-skin-color: #97A0C5;
+    --pet-hat-color: #FF6B35;
+    --pet-primary: var(--pet-skin-color);
+    --pet-primary-muted: var(--pet-skin-color);
+    --pet-hat: var(--pet-hat-color);
+  }
+`;
+
+function injectColorStyles(doc: Document): void {
+  const style = doc.createElement('style');
+  style.textContent = COLOR_STYLES;
+  doc.head?.appendChild(style);
+}
+
+function setupTransitions(target: HTMLObjectElement | null): void {
+  if (target?.contentDocument) {
+    injectColorStyles(target.contentDocument);
+    applyColors().catch(() => {});
+  }
 }
 
 /**
@@ -79,6 +110,7 @@ if (currentObject) {
   currentObject.style.transition = `opacity ${FADE_MS}ms ease-out`;
   currentObject.addEventListener('load', () => {
     setupTransitions(currentObject);
+    applyColors();
   });
 }
 

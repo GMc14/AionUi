@@ -1,6 +1,7 @@
 <svg viewBox="-18 -18 58 58" width="500" height="500" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
+      @import url('./pet-states.css');
       .happy-body {
         transform-origin: 11px 18px;
         animation: happy-jump 1s ease-in-out infinite;
@@ -51,45 +52,45 @@
     </style>
   </defs>
   <!-- sparkles — pixel cross shapes -->
-  <g class="happy-spark happy-sp1" fill="#e8714a">
+  <g class="happy-spark happy-sp1" fill="var(--pet-hat-variant)">
     <rect x="1" y="4" width="1" height="1"/>
     <rect x="0" y="5" width="3" height="0.5"/>
     <rect x="1" y="6" width="1" height="1"/>
   </g>
-  <g class="happy-spark happy-sp2" fill="#FF9F3F">
+  <g class="happy-spark happy-sp2" fill="var(--pet-hat-accent)">
     <rect x="19" y="2" width="1" height="1"/>
     <rect x="18" y="3" width="3" height="0.5"/>
     <rect x="19" y="4" width="1" height="1"/>
   </g>
-  <g class="happy-spark happy-sp3" fill="#FFF59D">
+  <g class="happy-spark happy-sp3" fill="var(--pet-spark-1)">
     <rect x="20" y="11" width="1" height="1"/>
     <rect x="19" y="12" width="3" height="0.5"/>
     <rect x="20" y="13" width="1" height="1"/>
   </g>
-  <g class="happy-spark happy-sp4" fill="#FFB3C6">
+  <g class="happy-spark happy-sp4" fill="var(--pet-spark-2)">
     <rect x="-2" y="10" width="1" height="1"/>
     <rect x="-3" y="11" width="3" height="0.5"/>
     <rect x="-2" y="12" width="1" height="1"/>
   </g>
-  <ellipse class="happy-shadow" cx="11" cy="22.5" rx="4" ry="0.6" fill="#c0c0c0"/>
+  <ellipse class="happy-shadow" cx="11" cy="22.5" rx="4" ry="0.6" fill="var(--pet-shadow)"/>
   <g class="happy-body">
     <!-- arms both raised high -->
     <g class="happy-arm-l">
-      <rect x="2" y="9" width="3" height="3" rx="0.5" fill="#8891b8" opacity="0.8" transform="rotate(45 3.5 10.5)"/>
+      <rect x="2" y="9" width="3" height="3" rx="0.5" fill="var(--pet-primary-muted)" opacity="0.8" transform="rotate(45 3.5 10.5)"/>
     </g>
     <g class="happy-arm-r">
-      <rect x="17" y="9" width="3" height="3" rx="0.5" fill="#8891b8" opacity="0.8" transform="rotate(45 18.5 10.5)"/>
+      <rect x="17" y="9" width="3" height="3" rx="0.5" fill="var(--pet-primary-muted)" opacity="0.8" transform="rotate(45 18.5 10.5)"/>
     </g>
-    <rect x="5" y="6" width="12" height="12" rx="6" fill="#97A0C5"/>
-    <polygon points="11,1 15,7 7,7" fill="#FF6B35"/>
-    <rect x="10" y="2" width="1" height="1" fill="#e8714a"/>
+    <rect x="5" y="6" width="12" height="12" rx="6" fill="var(--pet-primary)"/>
+    <polygon points="11,1 15,7 7,7" fill="var(--pet-hat)"/>
+    <rect x="10" y="2" width="1" height="1" fill="var(--pet-hat-variant)"/>
     <!-- ^^ arc eyes -->
-    <path d="M9 10.5 Q10 9.2 11 10.5" stroke="#111827" stroke-width="1.1" stroke-linecap="round" fill="none"/>
-    <path d="M11 10.5 Q12 9.2 13 10.5" stroke="#111827" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+    <path d="M9 10.5 Q10 9.2 11 10.5" stroke="var(--pet-ink)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+    <path d="M11 10.5 Q12 9.2 13 10.5" stroke="var(--pet-ink)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
     <!-- rosy blush cheeks -->
-    <ellipse cx="8" cy="12.5" rx="1.2" ry="0.7" fill="#e08090" opacity="0.5"/>
-    <ellipse cx="14" cy="12.5" rx="1.2" ry="0.7" fill="#e08090" opacity="0.5"/>
+    <ellipse cx="8" cy="12.5" rx="1.2" ry="0.7" fill="var(--pet-blush)" opacity="0.5"/>
+    <ellipse cx="14" cy="12.5" rx="1.2" ry="0.7" fill="var(--pet-blush)" opacity="0.5"/>
     <!-- wide smile -->
-    <path d="M8 13 Q11 17.5 14 13" stroke="#111827" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <path d="M8 13 Q11 17.5 14 13" stroke="var(--pet-ink)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
   </g>
 </svg>

@@ -1,6 +1,7 @@
 <svg viewBox="-18 -18 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
+      @import url('./pet-states.css');
       /* `done` = full happy animation + a pixel bubble overlay holding
          a green check. The happy half gives personality (jumps, waving
          arms, ^^ eyes, blush, sparkles). The bubble half carries the
@@ -88,48 +89,48 @@
   </defs>
 
   <!-- === Happy's sparkle layer (unchanged) === -->
-  <g class="done-spark done-sp1" fill="#FFD700">
+  <g class="done-spark done-sp1" fill="var(--pet-spark-gold)">
     <rect x="1" y="4" width="1" height="1"/>
     <rect x="0" y="5" width="3" height="0.5"/>
     <rect x="1" y="6" width="1" height="1"/>
   </g>
-  <g class="done-spark done-sp2" fill="#FF9F3F">
+  <g class="done-spark done-sp2" fill="var(--pet-hat-accent)">
     <rect x="19" y="2" width="1" height="1"/>
     <rect x="18" y="3" width="3" height="0.5"/>
     <rect x="19" y="4" width="1" height="1"/>
   </g>
-  <g class="done-spark done-sp3" fill="#FFF59D">
+  <g class="done-spark done-sp3" fill="var(--pet-spark-1)">
     <rect x="20" y="11" width="1" height="1"/>
     <rect x="19" y="12" width="3" height="0.5"/>
     <rect x="20" y="13" width="1" height="1"/>
   </g>
-  <g class="done-spark done-sp4" fill="#FFB3C6">
+  <g class="done-spark done-sp4" fill="var(--pet-spark-2)">
     <rect x="-2" y="10" width="1" height="1"/>
     <rect x="-3" y="11" width="3" height="0.5"/>
     <rect x="-2" y="12" width="1" height="1"/>
   </g>
 
-  <ellipse class="done-shadow" cx="11" cy="22.5" rx="4" ry="0.6" fill="#c0c0c0"/>
+  <ellipse class="done-shadow" cx="11" cy="22.5" rx="4" ry="0.6" fill="var(--pet-shadow)"/>
 
   <!-- === Happy's body (unchanged) === -->
   <g class="done-body">
     <g class="done-arm-l">
-      <rect x="2" y="9" width="3" height="3" rx="0.5" fill="#8891b8" opacity="0.8" transform="rotate(45 3.5 10.5)"/>
+      <rect x="2" y="9" width="3" height="3" rx="0.5" fill="var(--pet-primary-muted)" opacity="0.8" transform="rotate(45 3.5 10.5)"/>
     </g>
     <g class="done-arm-r">
-      <rect x="17" y="9" width="3" height="3" rx="0.5" fill="#8891b8" opacity="0.8" transform="rotate(45 18.5 10.5)"/>
+      <rect x="17" y="9" width="3" height="3" rx="0.5" fill="var(--pet-primary-muted)" opacity="0.8" transform="rotate(45 18.5 10.5)"/>
     </g>
-    <rect x="5" y="6" width="12" height="12" rx="6" fill="#97A0C5"/>
-    <polygon points="11,1 15,7 7,7" fill="#FF6B35"/>
-    <rect x="10" y="2" width="1" height="1" fill="#e8714a"/>
+    <rect x="5" y="6" width="12" height="12" rx="6" fill="var(--pet-primary)"/>
+    <polygon points="11,1 15,7 7,7" fill="var(--pet-hat)"/>
+    <rect x="10" y="2" width="1" height="1" fill="var(--pet-hat-variant)"/>
     <!-- ^^ arc eyes -->
-    <path d="M9 10.5 Q10 9.2 11 10.5" stroke="#111827" stroke-width="1.1" stroke-linecap="round" fill="none"/>
-    <path d="M11 10.5 Q12 9.2 13 10.5" stroke="#111827" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+    <path d="M9 10.5 Q10 9.2 11 10.5" stroke="var(--pet-ink)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+    <path d="M11 10.5 Q12 9.2 13 10.5" stroke="var(--pet-ink)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
     <!-- rosy blush cheeks -->
-    <ellipse cx="8" cy="12.5" rx="1.2" ry="0.7" fill="#e08090" opacity="0.5"/>
-    <ellipse cx="14" cy="12.5" rx="1.2" ry="0.7" fill="#e08090" opacity="0.5"/>
+    <ellipse cx="8" cy="12.5" rx="1.2" ry="0.7" fill="var(--pet-blush)" opacity="0.5"/>
+    <ellipse cx="14" cy="12.5" rx="1.2" ry="0.7" fill="var(--pet-blush)" opacity="0.5"/>
     <!-- wide smile -->
-    <path d="M8 13 Q11 17.5 14 13" stroke="#111827" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <path d="M8 13 Q11 17.5 14 13" stroke="var(--pet-ink)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
 
     <!-- === Round bubble overlay — to the right of the face.
          Circle center (25, 9) with r=3.8. The tail is a small triangle
@@ -137,16 +138,16 @@
          the body's bounding box (body ends at x=17, arm diamond extends
          to x=20). The check mark sits centered inside the circle. === -->
     <g class="done-bubble">
-      <circle cx="25" cy="9" r="3.8" fill="#ffffff" stroke="#d8dde8" stroke-width="0.4"/>
+      <circle cx="25" cy="9" r="3.8" fill="var(--pet-white)" stroke="var(--pet-bubble-border)" stroke-width="0.4"/>
       <!-- Tail: small triangle pointing left toward the pet's cheek -->
-      <path d="M21 9 L23 7.8 L23 10.2 Z" fill="#ffffff" stroke="#d8dde8" stroke-width="0.4" stroke-linejoin="round"/>
+      <path d="M21 9 L23 7.8 L23 10.2 Z" fill="var(--pet-white)" stroke="var(--pet-bubble-border)" stroke-width="0.4" stroke-linejoin="round"/>
       <!-- Seam cover where tail meets the circle -->
-      <rect x="22.8" y="8.2" width="0.6" height="1.6" fill="#ffffff"/>
+      <rect x="22.8" y="8.2" width="0.6" height="1.6" fill="var(--pet-white)"/>
 
       <!-- Green check ✓ centered in the bubble -->
       <path class="done-chk"
-            d="M23 9 L24.5 10.5 L27 7.5"
-            stroke="#22C55E" stroke-width="1.4"
+        d="M23 9 L24.5 10.5 L27 7.5"
+        stroke="var(--pet-check)" stroke-width="1.4"
             stroke-linecap="round" stroke-linejoin="round" fill="none"/>
     </g>
   </g>

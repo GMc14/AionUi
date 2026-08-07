@@ -269,6 +269,11 @@
   "contextUsage": {
     "contextUsed": "context used"
   },
+  "usage": {
+    "noUsage": "No usage",
+    "tokens": "Tokens",
+    "ofContext": "of context"
+  },
   "skill_generator": {
     "title": "Generate Skill/Rule",
     "generate": "Generate",
