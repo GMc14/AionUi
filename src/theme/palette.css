@@ -1,0 +1,8 @@
+/* Dashboard card palette for AionUi — read by usaige's watcher-dashboard.
+ * Not imported by the app itself; values mirror the brand/primary tokens in
+ * src/renderer/styles/themes/default-color-scheme.css so the card tracks the
+ * app's own light-theme colours instead of drifting from them. */
+:root {
+  --color-primary: #7583b2;
+  --color-secondary: #165dff;
+}
